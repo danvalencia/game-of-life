@@ -1,0 +1,38 @@
+# OS X
+.DS_Store
+*.swp
+
+# Xcode
+xcuserdata
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace
+*~.nib
+*.xccheckout
+
+# Xcode build
+binaries
+build
+DerivedData
+
+# AppCode
+.idea
+
+# Misc
+tags
+Automation/Calabash/*.png
+
+# UITests
+*/UITests/reports*/
+
+Gemfile.lock
+build
+compile_commands.json
+.sonar
+sonar-reports
+
+#eclipse
+*.project

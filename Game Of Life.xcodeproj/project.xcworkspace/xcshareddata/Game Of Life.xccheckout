@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8ECF1362-59F7-42A4-847C-42B1134730F8</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2D279562ED276DE88317E462659A9220016B7D7D</key>
+		<string>github.com:danvalencia/game-of-life.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2D279562ED276DE88317E462659A9220016B7D7D</key>
+		<string>Game%20Of%20Life/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:danvalencia/game-of-life.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2D279562ED276DE88317E462659A9220016B7D7D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2D279562ED276DE88317E462659A9220016B7D7D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Game%20Of%20Life</string>
+		</dict>
+	</array>
+</dict>
+</plist>
