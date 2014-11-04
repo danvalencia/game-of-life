@@ -13,8 +13,11 @@ class UniverseViewController: UICollectionViewController {
     let REUSE_IDENTIFIER = "Universe Cell Identifier"
     let columns = 10
     let rows = 20
+    var timer: NSTimer?
+    var timerIsRunning = false
     var universe: Universe!
     
+    @IBOutlet weak var startButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +76,22 @@ class UniverseViewController: UICollectionViewController {
     }
     
     @IBAction func startGame(sender: AnyObject) {
-        UIAlertView(title: "Starting game", message: "Start", delegate: nil, cancelButtonTitle: "Cancel").show()
+        if timerIsRunning {
+            timerIsRunning = false
+            timer!.invalidate()
+            startButton.titleLabel?.text = "Start"
+        } else {
+            timerIsRunning = true
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("updateUniverse"), userInfo: nil, repeats: true)
+            startButton.titleLabel?.text = "Stop"
+        }
     }
+    
+    func updateUniverse() {
+        universe.update()
+        collectionView.reloadData()
+    }
+    
     func cellSize() -> CGSize {
         let navBarRect = self.navigationController?.navigationBar.bounds
         let collectionViewRect = collectionView.bounds
@@ -86,6 +103,7 @@ class UniverseViewController: UICollectionViewController {
     }
     
     func indexRowToCoordinate(indexRow: Int) -> (Int, Int) {
+//        let x = indexRow / columns
         let x = (indexRow  % columns) > 0 ? (indexRow % columns) : 0
         let y = indexRow / columns
         return (x, y)

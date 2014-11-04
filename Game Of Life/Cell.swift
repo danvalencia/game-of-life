@@ -10,10 +10,17 @@ import Foundation
 
 class Cell {
     
-    var isAlive: Bool
+    var isAlive: Bool = false
     var shouldBeAlive: Bool = false
+    let x: Int!
+    let y: Int!
     
-    init(isAlive: Bool) {
-        self.isAlive = isAlive
+    init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+    }
+    
+    var description: String {
+        return "(\(x), \(y))"
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 
 class Universe {
     
-    var cells: [Cell]
+    var cells: [Cell?]
     let columns: Int
     let rows: Int
     
@@ -19,30 +19,62 @@ class Universe {
         columns = Int(size.width)
         rows = Int(size.height)
         let numCells = columns * rows
-        cells = [Cell](count: numCells, repeatedValue: Cell(isAlive: false))
+        cells = Array<Cell?>(count: numCells, repeatedValue: nil)
         initCells()
     }
     
     func initCells() {
-        for col in 0..<columns {
-            for row in 0..<rows {
-               self[col, row] = Cell(isAlive: false)
+        for y in 0..<rows {
+            for x in 0..<columns {
+                let cell = Cell(x: x, y: y)
+                self[x, y] = cell
             }
         }
     }
     
-    func numberOfNeighborsForCellWithPosition(col: Int, row: Int) -> Int {
-        let initCol: Int = col - 1 < 0 ? 0 : col - 1
-        let endCol: Int = col + 1 == columns ? col : col + 1
-        let initRow: Int = row - 1 < 0 ? 0 : row - 1
-        let endRow: Int = row + 1 == rows ? row : row + 1
+    func update() {
+        for y in 0..<rows {
+            for x in 0..<columns {
+                var cell = self[x, y]
+                let numNeighbors = numberOfNeighborsForCellWithPosition(x, y: y)
+                if cell.isAlive {
+                    if numNeighbors < 2 {
+                        cell.shouldBeAlive = false
+                    } else if numNeighbors <= 3 {
+                        cell.shouldBeAlive = true
+                    } else {
+                        cell.shouldBeAlive = false
+                    }
+                } else {
+                    if numNeighbors == 3 {
+                        cell.shouldBeAlive = true
+                    } else {
+                        cell.shouldBeAlive = false
+                    }
+                }
+            }
+        }
+        
+        for cell in cells {
+            cell!.isAlive = cell!.shouldBeAlive
+        }
+    }
+    
+    func numberOfNeighborsForCellWithPosition(x: Int, y: Int) -> Int {
+        let initX: Int = x - 1 < 0 ? 0 : x - 1
+        let endX: Int = x + 1 == columns ? x : x + 1
+        let initY: Int = y - 1 < 0 ? 0 : y - 1
+        let endY: Int = y + 1 == rows ? y : y + 1
         var neighborCount: Int = 0
         
-        for col in initCol...endCol {
-            for row in initRow...endRow {
-                let cell = self[col, row]
-                if cell.isAlive {
-                    neighborCount++
+        for neighborX in initX...endX {
+            for neighborY in initY...endY {
+                if neighborX != x || neighborY != y {
+                    let neighborCell = self[neighborX, neighborY]
+                    
+                    if neighborCell.isAlive {
+                        neighborCount++
+                    }
                 }
             }
         }
@@ -54,17 +86,15 @@ class Universe {
         return columns * rows
     }
     
-
-    
     func getPositionFromCoordinates(x: Int, y: Int) -> Int {
-        let position = (x * columns) + y
+        let position = (y * columns) + x
         return position
     }
     
     subscript(x: Int, y: Int) -> Cell {
         get {
             let pos = getPositionFromCoordinates(x, y: y)
-            return cells[pos]
+            return cells[pos]!
         }
         
         set(newCell) {

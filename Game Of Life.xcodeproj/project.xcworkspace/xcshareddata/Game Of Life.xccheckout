@@ -6,29 +6,33 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8ECF1362-59F7-42A4-847C-42B1134730F8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Game Of Life</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2D279562ED276DE88317E462659A9220016B7D7D</key>
+		<key>1AF4EAB336E4B33BEE2ACA8A587800EE6A3FE584</key>
 		<string>github.com:danvalencia/game-of-life.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Game Of Life.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2D279562ED276DE88317E462659A9220016B7D7D</key>
-		<string>Game%20Of%20Life/</string>
+		<key>1AF4EAB336E4B33BEE2ACA8A587800EE6A3FE584</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:danvalencia/game-of-life.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2D279562ED276DE88317E462659A9220016B7D7D</string>
+	<string>1AF4EAB336E4B33BEE2ACA8A587800EE6A3FE584</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2D279562ED276DE88317E462659A9220016B7D7D</string>
+			<string>1AF4EAB336E4B33BEE2ACA8A587800EE6A3FE584</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Game%20Of%20Life</string>
 		</dict>

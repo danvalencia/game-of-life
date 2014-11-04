@@ -36,3 +36,5 @@ sonar-reports
 
 #eclipse
 *.project
+
+*.xcuserstate
