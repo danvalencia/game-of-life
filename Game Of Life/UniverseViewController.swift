@@ -17,7 +17,8 @@ class UniverseViewController: UICollectionViewController {
     var timerIsRunning = false
     var universe: Universe!
     
-    @IBOutlet weak var startButton: UIButton!
+    var stopButton: UIBarButtonItem!
+    var startButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,10 @@ class UniverseViewController: UICollectionViewController {
         let screenFrame = UIScreen.mainScreen().bounds
         
         collectionView.reloadData()
+        
+        stopButton = UIBarButtonItem(title: "Stop", style: .Plain, target: self, action: Selector("startGame"))
+        startButton = UIBarButtonItem(title: "Start", style: .Plain, target: self, action: Selector("startGame"))
+        self.navigationItem.rightBarButtonItem = startButton
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -75,15 +80,15 @@ class UniverseViewController: UICollectionViewController {
         collectionView.reloadItemsAtIndexPaths([indexPath])
     }
     
-    @IBAction func startGame(sender: AnyObject) {
+    func startGame() {
         if timerIsRunning {
             timerIsRunning = false
             timer!.invalidate()
-            startButton.titleLabel?.text = "Start"
+            self.navigationItem.rightBarButtonItem = startButton
         } else {
             timerIsRunning = true
             timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("updateUniverse"), userInfo: nil, repeats: true)
-            startButton.titleLabel?.text = "Stop"
+            self.navigationItem.rightBarButtonItem = stopButton
         }
     }
     
@@ -103,7 +108,6 @@ class UniverseViewController: UICollectionViewController {
     }
     
     func indexRowToCoordinate(indexRow: Int) -> (Int, Int) {
-//        let x = indexRow / columns
         let x = (indexRow  % columns) > 0 ? (indexRow % columns) : 0
         let y = indexRow / columns
         return (x, y)
