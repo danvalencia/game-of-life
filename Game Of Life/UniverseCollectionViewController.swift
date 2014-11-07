@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UniverseViewController: UICollectionViewController {
+class UniverseCollectionViewController: UICollectionViewController {
 
     let REUSE_IDENTIFIER = "Universe Cell Identifier"
     let columns = 10
