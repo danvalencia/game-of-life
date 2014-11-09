@@ -12,15 +12,49 @@ import UIKit
 class UniverseViewController: UIViewController {
     
     let universGridView: UniverseGridView!
-    let columns = 10
-    let rows = 20
+    let columns = 30
+    let rows = 50
     let universe: Universe
+    
+    let startButton: UIBarButtonItem!
+    let stopButton: UIBarButtonItem!
+    
+    var universeGridView: UniverseGridView!
     var gridViewRect: CGRect!
+    var isGameRunning: Bool = false
+    var timer: NSTimer?
+    
+    
     
     required init(coder aDecoder: NSCoder) {
         universe = Universe(size: CGSize(width: columns, height: rows))
         
         super.init(coder: aDecoder)
+        startButton = UIBarButtonItem(title: "Start Game", style: .Plain, target: self, action: Selector("toggleGame"))
+        stopButton = UIBarButtonItem(title: "Stop Game", style: .Plain, target: self, action: Selector("toggleGame"))
+        
+        self.navigationItem.rightBarButtonItem = startButton
+    }
+    
+    func toggleGame() {
+        if isGameRunning {
+            isGameRunning = false
+            self.navigationItem.rightBarButtonItem = startButton
+            timer?.invalidate()
+        } else {
+            isGameRunning = true
+            self.navigationItem.rightBarButtonItem = stopButton
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("updateUniverse"), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func updateUniverse() {
+        universe.update()
+        self.view.setNeedsDisplay()
+    }
+    
+    func universeUpdated() {
+        
     }
     
     override func loadView() {
@@ -31,6 +65,8 @@ class UniverseViewController: UIViewController {
         
         gridViewRect = CGRect(origin: CGPoint(x: 0, y: frameYOrigin), size: CGSize(width: Int(screenFrame.width), height: frameHeight))
         
-        self.view = UniverseGridView(universe: universe, frame: gridViewRect)
+        self.universeGridView = UniverseGridView(universe: universe, frame: gridViewRect)
+        
+        self.view = universeGridView
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ypa-xN-Qah">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
@@ -47,19 +46,19 @@
             <objects>
                 <viewController id="ebr-vj-w3n" customClass="UniverseViewController" customModule="Game_Of_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NxX-RS-bN8"/>
-                        <viewControllerLayoutGuide type="bottom" id="Sfg-fg-UrO"/>
+                        <viewControllerLayoutGuide type="top" id="KnO-uE-u4i"/>
+                        <viewControllerLayoutGuide type="bottom" id="dej-1K-9Tg"/>
                     </layoutGuides>
-                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="Svc-Ex-yXb" customClass="UniverseGridView" customModule="Game_Of_Life" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="hdh-nE-RZk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Game of Life" id="SF3-eO-y92"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3q-ZO-Wb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="241" y="1479"/>
+            <point key="canvasLocation" x="241" y="1478.9999999999998"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DhC-bW-rwj">
@@ -70,12 +69,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ebr-vj-w3n" kind="relationship" relationship="rootViewController" id="k3F-oD-RkM"/>
+                        <segue destination="ebr-vj-w3n" kind="relationship" relationship="rootViewController" id="ddr-1R-dw5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap5-Lf-52b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-565" y="745"/>
+            <point key="canvasLocation" x="-565" y="744.99999999999989"/>
         </scene>
     </scenes>
 </document>

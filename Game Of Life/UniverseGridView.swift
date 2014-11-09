@@ -20,7 +20,6 @@ class UniverseGridView: UIView {
         
         super.init(frame: frame)
         
-        backgroundColor = UIColor.greenColor()
         initCellPaths()
         setNeedsDisplay()
     }
@@ -38,17 +37,40 @@ class UniverseGridView: UIView {
             }
         }
     }
-
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        let initialTouch = touches.anyObject() as UITouch
+        let point: CGPoint = initialTouch.locationInView(self)
+        let touchedGridCells = universeGridCells.filter {
+            let path = $0?.path
+            return path!.containsPoint(point)
+        }
+        
+        if let touchedCell: UniverseGridCell? = touchedGridCells.first {
+            touchedCell!.cell.isAlive = !touchedCell!.cell.isAlive
+        }
+        
+        setNeedsDisplay()
+    }
+    
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        
+    }
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func drawRect(rect: CGRect) {
         for cell in universeGridCells {
-            UIColor.whiteColor().set()
-            cell?.path.fill()
             UIColor.blackColor().set()
             cell?.path.stroke()
+            
+            if !cell!.cell.isAlive {
+                UIColor.whiteColor().set()
+            }
+            
+            cell?.path.fill()
         }
     }
 }
