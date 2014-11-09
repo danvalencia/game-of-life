@@ -20,6 +20,7 @@ class UniverseGridView: UIView {
         
         super.init(frame: frame)
         
+        backgroundColor = UIColor.greenColor()
         initCellPaths()
         setNeedsDisplay()
     }
@@ -44,8 +45,9 @@ class UniverseGridView: UIView {
     
     override func drawRect(rect: CGRect) {
         for cell in universeGridCells {
-            UIColor.blackColor().set()
+            UIColor.whiteColor().set()
             cell?.path.fill()
+            UIColor.blackColor().set()
             cell?.path.stroke()
         }
     }

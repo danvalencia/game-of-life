@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE3A85DE1A09A6C30020AFFA /* UniverseGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A85DD1A09A6C30020AFFA /* UniverseGridView.swift */; };
+		BE3A85E01A0D43160020AFFA /* UniverseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A85DF1A0D43160020AFFA /* UniverseViewController.swift */; };
 		BE3BE7D619F5D6A900E265E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BE7D519F5D6A900E265E6 /* AppDelegate.swift */; };
 		BE3BE7D819F5D6A900E265E6 /* UniverseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BE7D719F5D6A900E265E6 /* UniverseCollectionViewController.swift */; };
 		BE3BE7DB19F5D6A900E265E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3BE7D919F5D6A900E265E6 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		BE3A85DD1A09A6C30020AFFA /* UniverseGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniverseGridView.swift; sourceTree = "<group>"; };
+		BE3A85DF1A0D43160020AFFA /* UniverseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniverseViewController.swift; sourceTree = "<group>"; };
 		BE3BE7D019F5D6A900E265E6 /* Game Of Life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game Of Life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3BE7D419F5D6A900E265E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE3BE7D519F5D6A900E265E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				BE3BE7F919F5E2AC00E265E6 /* GameOfLife.playground */,
 				BE530E0B19F8A7D000D34268 /* CellView.xib */,
 				BE3A85DD1A09A6C30020AFFA /* UniverseGridView.swift */,
+				BE3A85DF1A0D43160020AFFA /* UniverseViewController.swift */,
 			);
 			path = "Game Of Life";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3BE7D819F5D6A900E265E6 /* UniverseCollectionViewController.swift in Sources */,
+				BE3A85E01A0D43160020AFFA /* UniverseViewController.swift in Sources */,
 				BE3BE7D619F5D6A900E265E6 /* AppDelegate.swift in Sources */,
 				BE3BE7F819F5DADF00E265E6 /* Universe.swift in Sources */,
 				BE3A85DE1A09A6C30020AFFA /* UniverseGridView.swift in Sources */,
