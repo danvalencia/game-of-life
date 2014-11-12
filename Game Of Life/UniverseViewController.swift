@@ -12,8 +12,8 @@ import UIKit
 class UniverseViewController: UIViewController {
     
     let universGridView: UniverseGridView!
-    let columns = 30
-    let rows = 50
+    let columns = 41
+    let rows = 60
     let universe: Universe
     
     let startButton: UIBarButtonItem!
@@ -23,8 +23,6 @@ class UniverseViewController: UIViewController {
     var gridViewRect: CGRect!
     var isGameRunning: Bool = false
     var timer: NSTimer?
-    
-    
     
     required init(coder aDecoder: NSCoder) {
         universe = Universe(size: CGSize(width: columns, height: rows))
@@ -44,17 +42,13 @@ class UniverseViewController: UIViewController {
         } else {
             isGameRunning = true
             self.navigationItem.rightBarButtonItem = stopButton
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("updateUniverse"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateUniverse"), userInfo: nil, repeats: true)
         }
     }
     
     func updateUniverse() {
         universe.update()
         self.view.setNeedsDisplay()
-    }
-    
-    func universeUpdated() {
-        
     }
     
     override func loadView() {
