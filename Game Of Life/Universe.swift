@@ -12,6 +12,7 @@ import UIKit
 class Universe {
     
     var cells: [Cell?]
+    var updatedCells: [Cell]
     let columns: Int
     let rows: Int
     
@@ -20,6 +21,7 @@ class Universe {
         rows = Int(size.height)
         let numCells = columns * rows
         cells = Array<Cell?>(count: numCells, repeatedValue: nil)
+        updatedCells = []
         initCells()
     }
     
@@ -33,6 +35,8 @@ class Universe {
     }
     
     func update() {
+        updatedCells.removeAll(keepCapacity: false)
+        
         for y in 0..<rows {
             for x in 0..<columns {
                 var cell = self[x, y]
@@ -40,14 +44,20 @@ class Universe {
                 if cell.isAlive {
                     if numNeighbors < 2 {
                         cell.shouldBeAlive = false
+                        //cell changed
+                        updatedCells.append(cell)
                     } else if numNeighbors <= 3 {
                         cell.shouldBeAlive = true
                     } else {
                         cell.shouldBeAlive = false
+                        //cell changed
+                        updatedCells.append(cell)
                     }
                 } else {
                     if numNeighbors == 3 {
                         cell.shouldBeAlive = true
+                        // cell changed
+                        updatedCells.append(cell)
                     } else {
                         cell.shouldBeAlive = false
                     }
@@ -55,9 +65,12 @@ class Universe {
             }
         }
         
-        for cell in cells {
-            cell!.isAlive = cell!.shouldBeAlive
+        for cell in updatedCells {
+            cell.isAlive = cell.shouldBeAlive
         }
+//        for cell in cells {
+//            cell!.isAlive = cell!.shouldBeAlive
+//        }
     }
     
     func numberOfNeighborsForCellWithPosition(x: Int, y: Int) -> Int {

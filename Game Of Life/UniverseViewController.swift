@@ -11,13 +11,13 @@ import UIKit
 
 class UniverseViewController: UIViewController {
     
-    let universGridView: UniverseGridView!
-    let columns = 41
-    let rows = 60
+    let columns = 75
+    let rows = 100
     let universe: Universe
     
     let startButton: UIBarButtonItem!
     let stopButton: UIBarButtonItem!
+    let eraseButton: UIBarButtonItem!
     
     var universeGridView: UniverseGridView!
     var gridViewRect: CGRect!
@@ -28,21 +28,35 @@ class UniverseViewController: UIViewController {
         universe = Universe(size: CGSize(width: columns, height: rows))
         
         super.init(coder: aDecoder)
+        
+        eraseButton = UIBarButtonItem(title: "Erase", style: .Bordered, target: self, action: Selector("toggleEraseMode"))
         startButton = UIBarButtonItem(title: "Start Game", style: .Plain, target: self, action: Selector("toggleGame"))
         stopButton = UIBarButtonItem(title: "Stop Game", style: .Plain, target: self, action: Selector("toggleGame"))
         
-        self.navigationItem.rightBarButtonItem = startButton
+        self.navigationItem.rightBarButtonItems = [startButton, eraseButton]
     }
     
     func toggleGame() {
         if isGameRunning {
             isGameRunning = false
-            self.navigationItem.rightBarButtonItem = startButton
+            eraseButton.enabled = true
             timer?.invalidate()
+            self.navigationItem.rightBarButtonItems = [startButton, eraseButton]
         } else {
             isGameRunning = true
-            self.navigationItem.rightBarButtonItem = stopButton
+            eraseButton.enabled = false
+            universeGridView.isEraseMode = false
+            self.navigationItem.rightBarButtonItems = [stopButton, eraseButton]
+            
             timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateUniverse"), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func toggleEraseMode() {
+        if universeGridView.isEraseMode {
+            universeGridView.isEraseMode = false
+        } else {
+            universeGridView.isEraseMode = true
         }
     }
     
