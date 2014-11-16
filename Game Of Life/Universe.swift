@@ -99,19 +99,19 @@ class Universe {
         return columns * rows
     }
     
-    func getPositionFromCoordinates(x: Int, y: Int) -> Int {
+    func getPositionFromCoordinates(x: Int, _ y: Int) -> Int {
         let position = (y * columns) + x
         return position
     }
     
     subscript(x: Int, y: Int) -> Cell {
         get {
-            let pos = getPositionFromCoordinates(x, y: y)
+            let pos = getPositionFromCoordinates(x, y)
             return cells[pos]!
         }
         
         set(newCell) {
-            let cellIndex = getPositionFromCoordinates(x, y: y)
+            let cellIndex = getPositionFromCoordinates(x, y)
             cells[cellIndex] = newCell
         }
     }
