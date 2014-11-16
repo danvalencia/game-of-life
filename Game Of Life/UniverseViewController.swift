@@ -11,8 +11,8 @@ import UIKit
 
 class UniverseViewController: UIViewController {
     
-    let columns = 75
-    let rows = 100
+    let columns = 15
+    let rows = 25
     let universe: Universe
     
     let startButton: UIBarButtonItem!
