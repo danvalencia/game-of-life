@@ -24,9 +24,6 @@ class UniverseGridView: UIView {
         
         super.init(frame: frame)
         
-//        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("handlePanGesture:"))
-//        self.gestureRecognizers = [gestureRecognizer]
-        
         initCellPaths()
         setNeedsDisplay()
     }
@@ -34,24 +31,7 @@ class UniverseGridView: UIView {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func initCellPaths() {
-        let cellWidth = ceil(frame.width / CGFloat(universeModel.columns))
-        let cellHeight = ceil(frame.height / CGFloat(universeModel.rows))
-        
-        for y in 0..<universeModel.rows {
-            for x in 0..<universeModel.columns {
-                let xOrigin = ceil(CGFloat(x) * cellWidth)
-                let yOrigin = ceil(CGFloat(y) * cellHeight)
-                
-                let pathRect = CGRect(x: xOrigin, y: yOrigin, width: cellWidth, height: cellHeight)
-                let path = UIBezierPath(rect: pathRect)
-                let universeGridCell: UniverseGridCell = UniverseGridCell(cell: universeModel[x, y], path: path)
-                universeGridCells.append(universeGridCell)
-            }
-        }
-    }
-    
+
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         let initialTouch = touches.anyObject() as UITouch
         
@@ -83,7 +63,6 @@ class UniverseGridView: UIView {
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         touchedCells.removeAll(keepCapacity: false)
-//        setNeedsDisplay()
     }
     
     override func drawRect(rect: CGRect) {
@@ -117,33 +96,22 @@ class UniverseGridView: UIView {
         }
     }
     
-//    func handlePanGesture(gesture: UIPanGestureRecognizer) {
-//        let initialLocation: CGPoint = gesture.locationInView(self)
-//        let initialVelocity: CGPoint = gesture.velocityInView(self)
-//        var touchedCell: UniverseGridCell?
-//        
-//        if gesture.state == .Began {
-//            touchedCell = getTouchedCell(initialLocation)
-//            touchedCell!.cell.isAlive = true
-//    
-//            touchedCells[touchedCell!.cell.description] = touchedCell
-//            setNeedsDisplayInRect(touchedCell!.path.bounds)
-//        } else if gesture.state == .Changed {
-//            touchedCell = getTouchedCell(initialLocation)
-//
-//            if let cell = touchedCell?.cell {
-//                if touchedCells[cell.description] == nil {
-//                    cell.isAlive = true
-//                    touchedCells[cell.description] = touchedCell!
-//                    setNeedsDisplayInRect(touchedCell!.path.bounds)
-//                }
-// 
-//            }
-//        } else {
-//            touchedCells.removeAll(keepCapacity: false)
-//        }
-//    }
-    
+    func initCellPaths() {
+        let cellWidth = ceil(frame.width / CGFloat(universeModel.columns))
+        let cellHeight = ceil(frame.height / CGFloat(universeModel.rows))
+        
+        for y in 0..<universeModel.rows {
+            for x in 0..<universeModel.columns {
+                let xOrigin = ceil(CGFloat(x) * cellWidth)
+                let yOrigin = ceil(CGFloat(y) * cellHeight)
+                
+                let pathRect = CGRect(x: xOrigin, y: yOrigin, width: cellWidth, height: cellHeight)
+                let path = UIBezierPath(rect: pathRect)
+                let universeGridCell: UniverseGridCell = UniverseGridCell(cell: universeModel[x, y], path: path)
+                universeGridCells.append(universeGridCell)
+            }
+        }
+    }
     
     func getTouchedCell(point: CGPoint) -> UniverseGridCell? {
         let touchedGridCells = universeGridCells.filter {
