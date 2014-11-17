@@ -97,13 +97,25 @@ class UniverseGridView: UIView {
     }
     
     func initCellPaths() {
-        let cellWidth = ceil(frame.width / CGFloat(universeModel.columns))
-        let cellHeight = ceil(frame.height / CGFloat(universeModel.rows))
+        
+        let columnDivisions = universeModel.columns - 1
+        let rowDivisions = universeModel.rows - 1
+        let divisionWidth = 1
+        
+        // 2 * divisionWidth accounts for padding on the sides and top/bottom
+        let availableWidth = Int(frame.width) - (columnDivisions * divisionWidth) - (2 * divisionWidth)
+        let availableHeight = Int(frame.height) - (rowDivisions * divisionWidth) - (2 * divisionWidth)
+        
+        
+        let cellWidth = Int(ceil(Float(availableWidth / universeModel.columns)))
+        let cellHeight = Int(ceil(Float(availableHeight / universeModel.rows)))
         
         for y in 0..<universeModel.rows {
             for x in 0..<universeModel.columns {
-                let xOrigin = ceil(CGFloat(x) * cellWidth)
-                let yOrigin = ceil(CGFloat(y) * cellHeight)
+                let xOffset = Int(x * divisionWidth + 1)
+                let yOffset = Int(y * divisionWidth + 1)
+                let xOrigin = x * cellWidth + xOffset
+                let yOrigin = y * cellHeight + yOffset
                 
                 let pathRect = CGRect(x: xOrigin, y: yOrigin, width: cellWidth, height: cellHeight)
                 let path = UIBezierPath(rect: pathRect)
