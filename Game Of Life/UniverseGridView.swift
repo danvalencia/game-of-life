@@ -26,6 +26,8 @@ class UniverseGridView: UIView {
         
         initCellPaths()
         setNeedsDisplay()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("universeUpdated"), name: universeModel.UNIVERSE_UPDATED_NOTIFICATION, object: universeModel)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -36,7 +38,7 @@ class UniverseGridView: UIView {
         let initialTouch = touches.anyObject() as UITouch
         
         let touchedCell = getTouchedCell(initialTouch)
-        touchedCell?.cell.isAlive = true
+        touchedCell?.cell.isAlive = !isEraseMode
         
         if let cell = touchedCell?.cell {
             touchedCells[cell.description] = touchedCell!
@@ -53,7 +55,7 @@ class UniverseGridView: UIView {
             
             if let cell = touchedCell?.cell {
                 if touchedCells[cell.description] == nil {
-                    cell.isAlive = true
+                    cell.isAlive = !isEraseMode
                     touchedCells[cell.description] = touchedCell
                     setNeedsDisplayInRect(touchedCell!.path.bounds)
                 }
@@ -95,6 +97,10 @@ class UniverseGridView: UIView {
             }
         }
     }
+        
+    func universeUpdated() {
+        setNeedsDisplay()
+    }
     
     func initCellPaths() {
         
@@ -119,7 +125,9 @@ class UniverseGridView: UIView {
                 
                 let pathRect = CGRect(x: xOrigin, y: yOrigin, width: cellWidth, height: cellHeight)
                 let path = UIBezierPath(rect: pathRect)
-                let universeGridCell: UniverseGridCell = UniverseGridCell(cell: universeModel[x, y], path: path)
+                let cell = universeModel[x, y]
+                
+                let universeGridCell: UniverseGridCell = UniverseGridCell(cell: cell, path: path)
                 universeGridCells.append(universeGridCell)
             }
         }

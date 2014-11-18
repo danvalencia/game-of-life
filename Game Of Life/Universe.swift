@@ -11,6 +11,8 @@ import UIKit
 
 class Universe {
     
+    let UNIVERSE_UPDATED_NOTIFICATION = "Universe Updated Notification"
+    
     var cells: [Cell?]
     var updatedCells: [Cell]
     let columns: Int
@@ -68,9 +70,8 @@ class Universe {
         for cell in updatedCells {
             cell.isAlive = cell.shouldBeAlive
         }
-//        for cell in cells {
-//            cell!.isAlive = cell!.shouldBeAlive
-//        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(UNIVERSE_UPDATED_NOTIFICATION, object: self)
     }
     
     func numberOfNeighborsForCellWithPosition(x: Int, y: Int) -> Int {

@@ -30,8 +30,8 @@ class UniverseViewController: UIViewController {
         super.init(coder: aDecoder)
         
         eraseButton = UIBarButtonItem(title: "Erase", style: .Bordered, target: self, action: Selector("toggleEraseMode"))
-        startButton = UIBarButtonItem(title: "Start Game", style: .Plain, target: self, action: Selector("toggleGame"))
-        stopButton = UIBarButtonItem(title: "Stop Game", style: .Plain, target: self, action: Selector("toggleGame"))
+        startButton = UIBarButtonItem(title: "Start", style: .Plain, target: self, action: Selector("toggleGame"))
+        stopButton = UIBarButtonItem(title: "Stop", style: .Plain, target: self, action: Selector("toggleGame"))
         
         self.navigationItem.rightBarButtonItems = [startButton, eraseButton]
     }
@@ -62,7 +62,6 @@ class UniverseViewController: UIViewController {
     
     func updateUniverse() {
         universe.update()
-        self.view.setNeedsDisplay()
     }
     
     override func loadView() {
