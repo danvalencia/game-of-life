@@ -25,9 +25,9 @@ class UniverseCollectionViewController: UICollectionViewController {
         
         universe = Universe(size: CGSize(width: columns, height: rows))
         
-        collectionView.registerNib(UINib(nibName: "CellView", bundle: nil), forCellWithReuseIdentifier: REUSE_IDENTIFIER)
+        collectionView!.registerNib(UINib(nibName: "CellView", bundle: nil), forCellWithReuseIdentifier: REUSE_IDENTIFIER)
         
-        let flowLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        let flowLayout = collectionView!.collectionViewLayout as UICollectionViewFlowLayout
         flowLayout.scrollDirection = .Vertical
         let itemSize = cellSize()
         flowLayout.itemSize = itemSize
@@ -35,7 +35,7 @@ class UniverseCollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 0.0
         let screenFrame = UIScreen.mainScreen().bounds
         
-        collectionView.reloadData()
+        collectionView!.reloadData()
         
         stopButton = UIBarButtonItem(title: "Stop", style: .Plain, target: self, action: Selector("startGame"))
         startButton = UIBarButtonItem(title: "Start", style: .Plain, target: self, action: Selector("startGame"))
@@ -94,12 +94,12 @@ class UniverseCollectionViewController: UICollectionViewController {
     
     func updateUniverse() {
         universe.update()
-        collectionView.reloadData()
+        collectionView!.reloadData()
     }
     
     func cellSize() -> CGSize {
         let navBarRect = self.navigationController?.navigationBar.bounds
-        let collectionViewRect = collectionView.bounds
+        let collectionViewRect = collectionView!.bounds
         let collectionViewHeight = collectionViewRect.height - navBarRect!.height
         
         let cellWidth = collectionViewRect.width / CGFloat(columns)

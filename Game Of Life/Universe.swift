@@ -36,6 +36,14 @@ class Universe {
         }
     }
     
+    func clearAll() {
+        for cell in cells {
+            cell?.isAlive = false
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(UNIVERSE_UPDATED_NOTIFICATION, object: self)
+    }
+    
     func update() {
         updatedCells.removeAll(keepCapacity: false)
         

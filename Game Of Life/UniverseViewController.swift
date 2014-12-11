@@ -18,6 +18,7 @@ class UniverseViewController: UIViewController {
     let startButton: UIBarButtonItem!
     let stopButton: UIBarButtonItem!
     let eraseButton: UIBarButtonItem!
+    let clearAllButton: UIBarButtonItem!
     
     var universeGridView: UniverseGridView!
     var gridViewRect: CGRect!
@@ -30,10 +31,12 @@ class UniverseViewController: UIViewController {
         super.init(coder: aDecoder)
         
         eraseButton = UIBarButtonItem(title: "Erase", style: .Bordered, target: self, action: Selector("toggleEraseMode"))
+        clearAllButton = UIBarButtonItem(title: "Clear All", style: .Bordered, target: self, action: Selector("clearAllCells"))
         startButton = UIBarButtonItem(title: "Start", style: .Plain, target: self, action: Selector("toggleGame"))
         stopButton = UIBarButtonItem(title: "Stop", style: .Plain, target: self, action: Selector("toggleGame"))
         
         self.navigationItem.rightBarButtonItems = [startButton, eraseButton]
+        self.navigationItem.leftBarButtonItem = clearAllButton
     }
     
     func toggleGame() {
@@ -58,6 +61,10 @@ class UniverseViewController: UIViewController {
         } else {
             universeGridView.isEraseMode = true
         }
+    }
+    
+    func clearAllCells() {
+        universe.clearAll();
     }
     
     func updateUniverse() {

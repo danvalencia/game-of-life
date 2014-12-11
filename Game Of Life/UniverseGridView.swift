@@ -72,9 +72,6 @@ class UniverseGridView: UIView {
             for cell in touchedCells.values {
                 if CGRectContainsRect(rect, cell.path.bounds) {
                     if isEraseMode {
-                        UIColor.blackColor().set()
-                        cell.path.stroke()
-                        
                         UIColor.whiteColor().set()
                         cell.path.fill()
                     } else {
@@ -87,7 +84,6 @@ class UniverseGridView: UIView {
         } else {
             for cell in universeGridCells {
                 UIColor.blackColor().set()
-                cell.path.stroke()
                 
                 if !cell.cell.isAlive {
                     UIColor.whiteColor().set()
