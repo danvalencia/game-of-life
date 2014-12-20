@@ -28,6 +28,7 @@ class UniverseGridView: UIView {
         setNeedsDisplay()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("universeUpdated"), name: universeModel.UNIVERSE_UPDATED_NOTIFICATION, object: universeModel)
+        self.backgroundColor = getBackgroundColor()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -72,10 +73,11 @@ class UniverseGridView: UIView {
             for cell in touchedCells.values {
                 if CGRectContainsRect(rect, cell.path.bounds) {
                     if isEraseMode {
-                        UIColor.whiteColor().set()
+                        
+                        getCellDeadColor().set()
                         cell.path.fill()
                     } else {
-                        UIColor.blackColor().set()
+                        getCellAliveColor().set()
                         cell.path.fill()
                     }
                     
@@ -83,16 +85,30 @@ class UniverseGridView: UIView {
             }
         } else {
             for cell in universeGridCells {
-                UIColor.blackColor().set()
+                getCellAliveColor().set()
                 
                 if !cell.cell.isAlive {
-                    UIColor.whiteColor().set()
+                    getCellDeadColor().set()
                 }
                 
                 cell.path.fill()
             }
         }
     }
+    
+    func getCellAliveColor() -> UIColor {
+        return UIColor.blackColor()
+    }
+    
+    func getCellDeadColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
+    
+    func getBackgroundColor() -> UIColor {
+        return UIColor.greenColor()
+    }
+    
+    
         
     func universeUpdated() {
         setNeedsDisplay()
@@ -102,7 +118,7 @@ class UniverseGridView: UIView {
         
         let columnDivisions = universeModel.columns - 1
         let rowDivisions = universeModel.rows - 1
-        let divisionWidth = 1
+        let divisionWidth = 3
         
         // 2 * divisionWidth accounts for padding on the sides and top/bottom
         let availableWidth = Int(frame.width) - (columnDivisions * divisionWidth) - (2 * divisionWidth)
